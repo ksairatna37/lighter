@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LighterFarm | Farm. Buy. Trade. Lighter Points.</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+    <!-- Outfit font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind via CDN (for quick static page) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      :root {
+        --foreground: #fafafa;
+        --accent-blue: rgba(120, 160, 255, 1);
+        --accent-cyan: rgba(80, 220, 220, 1);
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        font-family: Inter, system-ui, Outfit, Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0b0f14 0%,
+          #0f1113 50%,
+          #0b0f14 100%
+        );
+        color: var(--foreground);
+      }
+      .bg-pattern {
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(255, 255, 255, 0.02) 1px,
+          transparent 0
+        );
+        background-size: 40px 40px;
+      }
+      .glow-effect {
+        filter: drop-shadow(0 0 40px rgba(120, 160, 255, 0.3));
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      .animate-glow {
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes glow {
+        from {
+          filter: drop-shadow(0 0 20px rgba(120, 160, 255, 0.3));
+        }
+        to {
+          filter: drop-shadow(0 0 40px rgba(120, 160, 255, 0.6));
+        }
+      }
+      .group:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 0.75rem;
+        padding: 2px;
+        background: linear-gradient(90deg, #524026, #ffffff, #524026);
+        background-size: 200% 100%;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: shimmer 5s infinite linear;
+      }
+      @keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+    </style>
+  </head>
+  <body style="font-family: Outfit, sans-serif">
+    <!-- Header (from src/components/Header.tsx) -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 h-16 font-outfit mt-0 md:mt-4"
+    >
+      <div class="container mx-auto px-6 py-4 flex items-start justify-between">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="assets/lighterfarm_logo.png"
+              alt="Logo"
+              style="width: 48px; height: 48px; object-fit: cover"
+            />
+          </div>
+          <span class="text-2xl font-semibold text-foreground"
+            >Lighter.farm</span
+          >
+        </div>
+
+        <nav class="md:flex items-center space-x-8 mt-3 md:mt-0">
+          <div class="flex items-start space-x-4">
+            <a
+              href="#lightpaper"
+              class="bg-[#F2C94C] text-black font-bold px-4 py-2 rounded-lg inline-block transition-colors hover:bg-yellow-500 hidden md:flex"
+              >Lightpaper</a
+            >
+
+            <div class="flex flex-col space-y-4">
+              <a
+                href="https://twitter.com/yourhandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-[#F2C94C] p-2 rounded-lg inline-block transition-colors hover:bg-yellow-500"
+              >
+                <!-- simple icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 50 50"
+                >
+                  <path
+                    d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://t.me/yourhandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-[#F2C94C] p-2 rounded-lg inline-block transition-colors hover:bg-yellow-500"
+              >
+                <img
+                  width="25"
+                  height="25"
+                  src="https://img.icons8.com/windows/32/telegram-app.png"
+                  alt="telegram-app"
+                />
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero (from src/components/Hero.tsx) -->
+    <section
+      class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-pattern"
+      style="padding-top: 64px"
+    >
+      <!-- Background video -->
+      <video
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none -z-20 bg-video-filter"
+        src="assets/bg-vmake.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      ></video>
+
+      <!-- Blur overlay (top half) -->
+      <div
+        class="absolute top-0 left-0 w-full h-1/2 pointer-events-none -z-10"
+        style="
+          backdrop-filter: blur(36px);
+          -webkit-mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.9) 80%,
+            rgba(0, 0, 0, 0) 100%
+          );
+          mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.9) 80%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        "
+      ></div>
+
+      <div class="container mx-auto px-6 text-center relative z-10 mt-0">
+        <div class="mt-32 md:mt-0 max-w-7xl mx-auto">
+          <h1
+            class="text-4xl md:text-7xl lg:text-8xl font-black leading-tight text-foreground"
+          >
+            Farm. Buy. Trade.
+            <span class="block"
+              ><span class="font-display text-5xl md:md:text-7xl lg:text-8xl"
+                >Lighter Points.</span
+              ></span
+            >
+          </h1>
+        </div>
+
+        <p
+          class="flex items-center justify-center text-xl md:text-2xl mb-4 max-w-2xl mx-auto font-medium"
+        >
+          Created on top of
+          <span
+            ><img
+              src="assets/lighter.png"
+              alt="Logo"
+              style="height: 64px; vertical-align: middle"
+          /></span>
+        </p>
+
+        <div class="mt-32 md:mt-32">
+          <button
+            class="relative px-6 py-2 bg-[#524026] text-white text-lg font-medium rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0px_120px_rgba(255,255,255,0.5)] group"
+          >
+            <span class="relative z-10">Public Beta Soon</span>
+          </button>
+        </div>
+
+        <div class="mt-4 md:hidden">
+          <a
+            href="#lightpaper"
+            class="bg-[#F2C94C] text-black font-bold px-4 py-2 rounded-lg inline-block transition-colors hover:bg-yellow-500"
+            >Lightpaper</a
+          >
+        </div>
+      </div>
+
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          class="absolute top-1/4 left-1/4 w-64 h-64 bg-accent-blue opacity-5 rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-cyan opacity-5 rounded-full blur-3xl"
+        ></div>
+      </div>
+    </section>
+  </body>
+</html>
